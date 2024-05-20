@@ -1,3 +1,4 @@
+import Address from "../../@shared/domain/value-object/address.value-object";
 import Id from "../../@shared/domain/value-object/id.value-object";
 import Client from "../domain/client.entity";
 import ClientGateway from "../gateway/client.gateway";
@@ -9,7 +10,13 @@ export default class ClientRepository implements ClientGateway {
       id: client.id.id,
       name: client.name,
       email: client.email,
-      address: client.address,
+      document: client.document,
+      street: client.address.street,
+      number: client.address.number,
+      complement: client.address.complement,
+      city: client.address.city,
+      state: client.address.state,
+      zipcode: client.address.zipCode,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     });
@@ -27,7 +34,15 @@ export default class ClientRepository implements ClientGateway {
       id: new Id(client.id),
       name: client.name,
       email: client.email,
-      address: client.address,
+      document: client.document,
+      address: new Address({
+        city: client.city,
+        complement: client.complement,
+        number: client.number,
+        state: client.state,
+        street: client.street,
+        zipCode: client.zipCode,
+      }),
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     });

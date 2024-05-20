@@ -13,7 +13,15 @@ describe("AddClientUsecase", () => {
     const usecase = new AddClientUsecase(repository);
 
     const result = await usecase.execute({
-      address: "address 1",
+      address: {
+        city: "city 1",
+        complement: "complement 1",
+        number: "1",
+        state: "state 1",
+        street: "street 1",
+        zipCode: "zipCode 1",
+      },
+      document: "000",
       email: "email 1",
       name: "name 1",
     });

@@ -26,7 +26,15 @@ describe("Client Adm Facade", () => {
       id: "1",
       name: "Client 1",
       email: "test@.com",
-      address: "Address 1",
+      document: "000",
+      address: {
+        city: "City 1",
+        state: "State 1",
+        zipCode: "000",
+        street: "Street 1",
+        number: "1",
+        complement: "",
+      },
     };
 
     const facade = ClientAdmFacadeFactory.create();
@@ -40,7 +48,10 @@ describe("Client Adm Facade", () => {
     expect(client.id).toBe(input.id);
     expect(client.name).toBe(input.name);
     expect(client.email).toBe(input.email);
-    expect(client.address).toBe(input.address);
+    expect(client.city).toBe(input.address.city);
+    expect(client.state).toBe(input.address.state);
+    expect(client.zipCode).toBe(input.address.zipCode);
+    expect(client.street).toBe(input.address.street);
   });
 
   it("should find a client", async () => {

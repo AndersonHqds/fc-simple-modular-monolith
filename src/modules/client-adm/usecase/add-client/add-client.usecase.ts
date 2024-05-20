@@ -1,3 +1,4 @@
+import Address from "../../../@shared/domain/value-object/address.value-object";
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import UsecaseInterface from "../../../@shared/usecase/usecase-interface";
 import Client from "../../domain/client.entity";
@@ -15,7 +16,15 @@ export default class AddClientUsecase implements UsecaseInterface {
       id: new Id(input.id),
       name: input.name,
       email: input.email,
-      address: input.address,
+      document: input.document,
+      address: new Address({
+        city: input.address.city,
+        complement: input.address.complement,
+        number: input.address.number,
+        state: input.address.state,
+        street: input.address.street,
+        zipCode: input.address.zipCode,
+      }),
     };
 
     const client = new Client(props);
@@ -26,6 +35,7 @@ export default class AddClientUsecase implements UsecaseInterface {
       id: client.id.id,
       name: client.name,
       email: client.email,
+      document: client.document,
       address: client.address,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
